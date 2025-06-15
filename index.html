@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>حسام الحسيني - خبير قواعد البيانات وتطوير الأنظمة</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #3498db;
+      --accent-color: #e74c3c;
+      --light-color: #ecf0f1;
+      --dark-color: #2c3e50;
+      --text-color: #333;
+      --text-light: #7f8c8d;
+      --background: #f9f9f9;
+      --card-bg: #ffffff;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+      --light-brown: #D2B48C;
+      --dark-yellow: #FFD700;
+      --dark-brown: #8B4513;
+      --cream: #FFF8DC;
+      --light-cream: #FFFEF9;
+      --dark-cream: #F5E8C7;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Tajawal', sans-serif;
+    }
+    
+    body {
+      background: var(--background);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding-top: 70px;
+    }
+    
+    /* التنسيق العام */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    /* الشريط العلوي */
+    nav {
+      background: var(--primary-color);
+      padding: 1rem 2rem;
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+    }
+    
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .nav-logo {
+      color: white;
+      font-weight: bold;
+      font-size: 1.5rem;
+      text-decoration: none;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      transition: var(--transition);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
+    
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    
+    /* الهيدر */
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+      color: white;
+      padding: 6rem 0 4rem;
+      clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+    }
+    
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+    }
+    
+    .header-content {
+      flex: 1;
+    }
+    
+    .header-content h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    
+    .subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: var(--light-color);
+      opacity: 0.9;
+    }
+    
+    .header-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .profile-image {
+      flex: 1;
+      max-width: 350px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .profile-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    /* الأزرار */
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      text-align: center;
+    }
+    
+    .btn.primary {
+      background: var(--secondary-color);
+      color: white;
+    }
+    
+    .btn.primary:hover {
+      background: #2980b9;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(41, 128, 185, 0.3);
+    }
+    
+    .btn.secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+    
+    .btn.secondary:hover {
+      background: white;
+      color: var(--primary-color);
+      transform: translateY(-3px);
+    }
+    
+    /* الأقسام */
+    .section {
+      padding: 4rem 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    
+    .section-title h2 {
+      font-size: 2.2rem;
+      color: var(--primary-color);
+      display: inline-block;
+      padding-bottom: 1rem;
+    }
+    
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 50%;
+      transform: translateX(50%);
+      width: 80px;
+      height: 4px;
+      background: var(--secondary-color);
+      border-radius: 2px;
+    }
+    
+    /* البطاقات */
+    .card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      transition: var(--transition);
+      margin-bottom: 2rem;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .card-title {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    
+    /* قائمة المهارات */
+    .skills-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .skill-item {
+      background: rgba(52, 152, 219, 0.1);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-right: 4px solid var(--secondary-color);
+    }
+    
+    .skill-name {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+    
+    .skill-bar {
+      height: 8px;
+      background: #ecf0f1;
+      border-radius: 4px;
+      margin-top: 0.5rem;
+    }
+    
+    .skill-level {
+      height: 100%;
+      background: var(--secondary-color);
+      border-radius: 4px;
+    }
+    
+    /* معرض الصور */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .gallery-item {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      height: 200px;
+      box-shadow: var(--shadow);
+    }
+    
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+    
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      background: rgba(44, 62, 80, 0.8);
+      color: white;
+      padding: 1rem;
+      transform: translateY(100%);
+      transition: var(--transition);
+    }
+    
+    .gallery-item:hover .gallery-overlay {
+      transform: translateY(0);
+    }
+    
+    /* وسائل التواصل */
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: var(--primary-color);
+      color: white;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      transition: var(--transition);
+    }
+    
+    .social-links a:hover {
+      background: var(--secondary-color);
+      transform: translateY(-5px);
+    }
+    
+    /* واتساب عائم */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      background-color: #25D366;
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      z-index: 999;
+      transition: var(--transition);
+    }
+    
+    .whatsapp-float:hover {
+      transform: scale(1.1) translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* الفوتر */
+    footer {
+      background: var(--primary-color);
+      color: white;
+      text-align: center;
+      padding: 2rem 0;
+      margin-top: 3rem;
+    }
+    
+    /* تأثيرات الظهور */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .section {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+    
+    /* تأثيرات التمرير */
+    .reveal {
+      position: relative;
+      transform: translateY(50px);
+      opacity: 0;
+      transition: all 0.8s ease;
+    }
+    
+    .reveal.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    /* أنماط من index2 */
+    .cv-header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--secondary-color);
+    }
+    
+    .cv-name {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+      font-weight: 900;
+    }
+    
+    .cv-title {
+      font-size: 1.5rem;
+      color: var(--light-color);
+      background: var(--primary-color);
+      display: inline-block;
+      padding: 5px 20px;
+      border-radius: 30px;
+      margin-bottom: 15px;
+    }
+    
+    .cv-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+    
+    .cv-info-group {
+      background: rgba(210, 180, 140, 0.1);
+      padding: 20px;
+      border-radius: 12px;
+      border-left: 4px solid var(--secondary-color);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .cv-info-group:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .cv-info-title {
+      font-weight: bold;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+      position: relative;
+      padding-right: 15px;
+    }
+    
+    .cv-info-title::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 8px;
+      background: var(--secondary-color);
+      border-radius: 50%;
+    }
+    
+    .cv-info-content {
+      color: #555;
+    }
+    
+    .cv-info-content p {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .cv-info-content p i {
+      margin-left: 10px;
+      color: var(--secondary-color);
+      width: 20px;
+      text-align: center;
+    }
+    
+    .skills-section {
+      background: var(--light-color);
+      padding: 30px;
+      border-radius: 12px;
+      margin-bottom: 40px;
+    }
+    
+    .skills-categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    
+    .skill-category {
+      margin-bottom: 20px;
+    }
+    
+    .skill-category h4 {
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+      border-bottom: 2px solid var(--secondary-color);
+      padding-bottom: 5px;
+      display: inline-block;
+    }
+    
+    .experience-item {
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px dashed var(--light-brown);
+    }
+    
+    .experience-item:last-child {
+      border-bottom: none;
+    }
+    
+    .experience-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    
+    .experience-title {
+      font-size: 1.3rem;
+      color: var(--primary-color);
+      font-weight: 700;
+    }
+    
+    .experience-date {
+      background: var(--secondary-color);
+      color: var(--primary-color);
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    
+    .experience-company {
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 10px;
+    }
+    
+    .experience-description {
+      color: #555;
+      line-height: 1.8;
+    }
+    
+    .certificates-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+    }
+    
+    .certificate-item {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .certificate-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    
+    .certificate-image {
+      height: 200px;
+      overflow: hidden;
+    }
+    
+    .certificate-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .certificate-item:hover .certificate-image img {
+      transform: scale(1.1);
+    }
+    
+    .certificate-content {
+      padding: 20px;
+    }
+    
+    .certificate-title {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: var(--primary-color);
+    }
+    
+    .certificate-issuer {
+      color: var(--secondary-color);
+      font-weight: 600;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .certificate-issuer i {
+      margin-left: 8px;
+    }
+    
+    .certificate-date {
+      color: #777;
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+    }
+    
+    .certificate-description {
+      color: #555;
+      margin-bottom: 15px;
+    }
+    
+    .download-pdf {
+      display: inline-block;
+      background: var(--primary-color);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      margin-top: 30px;
+      border: 2px solid var(--primary-color);
+    }
+    
+    .download-pdf:hover {
+      background: transparent;
+      color: var(--primary-color);
+    }
+    
+    .download-pdf i {
+      margin-left: 8px;
+    }
+    
+    /* أنماط جديدة للأزرار */
+    .load-more-btn {
+      display: inline-block;
+      background: var(--primary-color);
+      color: white;
+      padding: 12px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+      border: 2px solid var(--primary-color);
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(44, 62, 80, 0.2);
+    }
+    
+    .load-more-btn:hover {
+      background: transparent;
+      color: var(--primary-color);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(44, 62, 80, 0.3);
+    }
+    
+    .load-more-btn i {
+      margin-right: 8px;
+    }
+    
+    .download-btn {
+      background: var(--secondary-color);
+      color: var(--primary-color);
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .download-btn:hover {
+      background: var(--primary-color);
+      color: white;
+    }
+    
+    /* Watermark Style */
+    .watermark {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      font-size: 1.2rem;
+      color: rgba(44, 62, 80, 0.2);
+      z-index: -1;
+      pointer-events: none;
+      font-weight: bold;
+      transform: rotate(-15deg);
+      user-select: none;
+    }
+    
+    /* التجاوب */
+    @media (max-width: 992px) {
+      .header-container {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+      
+      .profile-image {
+        margin: 0 auto 2rem;
+      }
+      
+      .header-buttons {
+        justify-content: center;
+      }
+      
+      .cv-name {
+        font-size: 2rem;
+      }
+      
+      .cv-title {
+        font-size: 1.2rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        flex-direction: column;
+        background: var(--primary-color);
+        width: 80%;
+        text-align: center;
+        transition: var(--transition);
+        padding: 1rem 0;
+        border-radius: 0 0 0 10px;
+      }
+      
+      .nav-links.active {
+        right: 0;
+      }
+      
+      .nav-toggle {
+        display: block;
+      }
+      
+      .header-content h1 {
+        font-size: 2.5rem;
+      }
+      
+      .section {
+        padding: 3rem 1rem;
+      }
+      
+      .experience-header {
+        flex-direction: column;
+      }
+      
+      .experience-date {
+        margin-top: 5px;
+        align-self: flex-start;
+      }
+      
+      .certificates-list {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .header-content h1 {
+        font-size: 2rem;
+      }
+      
+      .subtitle {
+        font-size: 1rem;
+      }
+      
+      .header-buttons {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .btn {
+        width: 100%;
+      }
+      
+      .section-title h2 {
+        font-size: 1.8rem;
+      }
+      
+      .social-links a {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+      }
+      
+      .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+        bottom: 20px;
+        left: 20px;
+      }
+      
+      .cv-info {
+        grid-template-columns: 1fr;
+      }
+      
+      .cv-name {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Watermark -->
+  <div class="watermark">أ. حسام الحسيني</div>
+
+  <!-- شريط التنقل -->
+  <nav>
+    <div class="nav-container container">
+      <a href="#" class="nav-logo">حسام الحسيني</a>
+      
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <div class="nav-links">
+        <a href="#about">من أنا</a>
+        <a href="#cv">السيرة الذاتية</a>
+        <a href="#research">بحوث التخرج</a>
+        <a href="#projects">المشاريع البرمجية</a>
+        <a href="#engineering">المشاريع الهندسية</a>
+        <a href="#contact">التواصل</a>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- الهيدر -->
+  <header>
+    <div class="container header-container">
+      <div class="header-content">
+        <h1>أهلاً وسهلاً بكم في منصتي الأكاديمية</h1>
+        <p class="subtitle">يسعدني أن أقدم لكم عبر هذه المنصة مجموعة من بحوث التخرج، والمشاريع البرمجية والهندسية التي قمت بإنجازها خلال مسيرتي الأكاديمية والمهنية، والتي تعكس مستوى الالتزام والجودة في العمل والمعرفة.</p>
+        <div class="header-buttons">
+          <a href="#contact" class="btn primary">تواصل معي</a>
+          <a href="#cv" class="btn secondary">عرض السيرة الذاتية</a>
+        </div>
+      </div>
+      
+      <div class="profile-image">
+        <img src="profile.jpg" alt="حسام الحسيني">
+      </div>
+    </div>
+  </header>
+  
+  <!-- قسم من أنا -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>من أنا</h2>
+      </div>
+      
+      <div class="container">
+        <p>أنا خريج جامعي في تخصص علوم الحاسوب وتطوير الأنظمة، أمتلك خبرة متعمقة في تصميم قواعد البيانات وتطوير نظم إدارة المعلومات. وقد كان لي شرف تنفيذ العديد من المشاريع التقنية التي لاقت إشادة وتقديرًا من جهات أكاديمية مرموقة.</p>
+        <p>أتمتع بكفاءة عالية في التعامل مع قواعد البيانات باستخدام لغة SQL، إلى جانب خبرة عملية في تطوير تطبيقات سطح المكتب وإدارة المشاريع التقنية بمهنية واحتراف. أطمح من خلال مشاريعي إلى ابتكار حلول رقمية ذكية تسهم في الارتقاء بمستوى الأداء الإداري والتقني على حدّ سواء.</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- قسم السيرة الذاتية -->
+  <section id="cv" class="section">
+    <div class="container">
+      <div class="cv-header">
+        <h1 class="cv-name">حسام فيصل سعيد</h1>
+        <div class="cv-title">خبير في قواعد البيانات وتطوير الأنظمة المعلوماتية</div>
+        <p>أخصائي في تصميم وتطوير أنظمة قواعد البيانات المحوسبة، أمتلك خبرة تراكمية تمتد لأكثر من ست سنوات في مجالات العمل الأكاديمي والتقني، مع سجل حافل في تنفيذ مشاريع برمجية متقدمة تخدم القطاعات التعليمية والإدارية بكفاءة عالية.</p>
+      </div>
+      
+      <div class="cv-info">
+        <div class="cv-info-group">
+          <div class="cv-info-title">المعلومات الشخصية</div>
+          <div class="cv-info-content">
+            <p><i class="fas fa-user"></i> <strong>الاسم:</strong> حسام فيصل سعيد</p>
+            <p><i class="fas fa-birthday-cake"></i> <strong>تاريخ الميلاد:</strong> 8 يناير 2000</p>
+            <p><i class="fas fa-venus-mars"></i> <strong>الجنس:</strong> ذكر</p>
+            <p><i class="fas fa-heart"></i> <strong>الحالة الاجتماعية:</strong> متزوج</p>
+            <p><i class="fas fa-flag"></i> <strong>الجنسية:</strong> عراقي</p>
+            <p><i class="fas fa-child"></i> <strong>عدد الأطفال:</strong> 1</p>
+            <p><i class="fas fa-map-marker-alt"></i> <strong>العنوان:</strong> الموصل/الجانب الأيسر/حي التعليم العالي</p>
+          </div>
+        </div>
+        
+        <div class="cv-info-group">
+          <div class="cv-info-title">المؤهلات العلمية</div>
+          <div class="cv-info-content">
+            <p><i class="fas fa-university"></i> <strong>الجامعة:</strong> جامعة الموصل</p>
+            <p><i class="fas fa-graduation-cap"></i> <strong>الكلية:</strong> التربية للعلوم الصرفة</p>
+            <p><i class="fas fa-laptop-code"></i> <strong>التخصص:</strong> علوم الحاسوب</p>
+            <p><i class="fas fa-award"></i> <strong>الدرجة:</strong> بكالوريوس</p>
+            <p><i class="fas fa-calendar-alt"></i> <strong>سنة التخرج:</strong> 2020/2021</p>
+            <p><i class="fas fa-star"></i> <strong>المعدل:</strong> 86.121% (جيد جداً)</p>
+            <p><i class="fas fa-trophy"></i> <strong>الترتيب:</strong> الرابع من 138 طالب</p>
+          </div>
+        </div>
+        
+        <div class="cv-info-group">
+          <div class="cv-info-title">معلومات الاتصال</div>
+          <div class="cv-info-content">
+            <p><i class="fas fa-phone"></i> <strong>الهاتف:</strong> 07518097029</p>
+            <p><i class="fas fa-envelope"></i> <strong>البريد الإلكتروني:</strong> hussamfaisal2@gmail.com</p>
+            <p><i class="fas fa-globe"></i> <strong>موقع الويب:</strong> www.yourwebsite.com</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="skills-section">
+        <h3 style="color: var(--primary-color); margin-bottom: 25px;">المهارات الاحترافية</h3>
+        <div class="skills-categories">
+          <div class="skill-category">
+            <h4>قواعد البيانات</h4>
+            <div class="skill-item">
+              <div class="skill-name">SQL</div>
+              <div class="skill-bar"><div class="skill-level" style="width: 100%;"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">تصميم قواعد البيانات</div>
+              <div class="skill-bar"><div class="skill-level" style="width: 100%;"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">إدارة قواعد البيانات</div>
+              <div class="skill-bar"><div class="skill-level" style="width: 100%;"></div></div>
+            </div>
+          </div>
+          
+          <div class="skill-category">
+            <h4>تطوير البرمجيات</h4>
+            <div class="skill-item">
+              <div class="skill-name">VB.NET</div>
+              <div class="skill-bar"><div class="skill-level" style="width: 100%;"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">أنظمة سطح المكتب</div>
+              <div class="skill-bar"><div class="skill-level" style="width: 100%;"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">C# and Sql Server</div>
+              <div class="skill-bar"><div class="skill-level" style="width: 85%;"></div></div>
+            </div>
+          </div>
+          
+          <div class="skill-category">
+            <h4>أخرى</h4>
+            <div class="skill-item">
+              <div class="skill-name">Microsoft Office</div>
+              <div class="skill-bar"><div class="skill-level" style="width: 100%;"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">تحليل البيانات</div>
+              <div class="skill-bar"><div class="skill-level" style="width: 85%;"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">إدارة المشاريع</div>
+              <div class="skill-bar"><div class="skill-level" style="width: 80%;"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <h3 style="color: var(--primary-color); margin: 25px 0 15px;">الخبرات العملية</h3>
+      
+      <div class="experience-item">
+        <div class="experience-header">
+          <div class="experience-title">مصمم أنظمة قواعد بيانات</div>
+          <div class="experience-date">2019 - الان</div>
+        </div>
+        <div class="experience-company">جامعة الموصل | جامعة نينوى</div>
+        <div class="experience-description">
+          <p>تصميم وتنفيذ أنظمة قواعد بيانات متكاملة للعديد من الكليات والوحدات الإدارية في الجامعتين، بما في ذلك:</p>
+          <ul style="margin-right: 20px; margin-top: 10px;">
+            <li>نظام إدارة شؤون الموظفين لكلية التربية للعلوم الإنسانية</li>
+            <li>نظام تسجيل البحوث العلمية لكلية هندسة الإلكترونيات</li>
+            <li>نظام إدارة المهام والمشاريع الأكاديمية</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="experience-item">
+        <div class="experience-header">
+          <div class="experience-title">مدير نظام</div>
+          <div class="experience-date">2022 - الان</div>
+        </div>
+        <div class="experience-company">ثانوية آسيا الأهلية للبنين</div>
+        <div class="experience-description">
+          <p>إدارة وتطوير النظام المعلوماتي للمدرسة، بما في ذلك:</p>
+          <ul style="margin-right: 20px; margin-top: 10px;">
+            <li>تطوير نظام إدارة الطلاب والكادر التعليمي</li>
+            <li>إنشاء قواعد بيانات للنتائج الأكاديمية</li>
+            <li>تدريب الكادر على استخدام الأنظمة المحوسبة</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="experience-item">
+  <div class="experience-header">
+    <div class="experience-title">مستشار تقني</div>
+    <div class="experience-date">2019 - الان</div>
+  </div>
+  <div class="experience-company">مشاريع طلبة الدراسات الأولية</div>
+  <div class="experience-description">
+    <p>تقديم الاستشارات التقنية والإشراف على مشاريع طلبة الدراسات الأولية في مختلف التخصصات، بما في ذلك:</p>
+    <ul style="margin-right: 20px; margin-top: 10px;">
+      <li>تصميم أنظمة قواعد البيانات</li>
+      <li>تطوير تطبيقات سطح المكتب</li>
+      <li>تحليل البيانات واستخراج النتائج</li>
+    </ul>
+  </div>
+</div>
+
+<div class="experience-item">
+  <div class="experience-header">
+    <div class="experience-title">إداري ومدرب</div>
+    <div class="experience-date">2024 - 2025</div>
+  </div>
+  <div class="experience-company">معهد العلا لدورات التقوية</div>
+  <div class="experience-description">
+    <p>العمل في الإدارة العامة للمعهد، بالإضافة إلى تقديم دورات تعليمية في مادة الرياضيات للصف الخامس والسادس الابتدائي، وشملت المهام:</p>
+    <ul style="margin-right: 20px; margin-top: 10px;">
+      <li>الإشراف الإداري والتنظيمي على نشاطات المعهد</li>
+      <li>إعداد وتقديم دروس تعليمية في مادة الرياضيات</li>
+      <li>متابعة أداء الطلبة وتقديم التقارير لأولياء الأمور</li>
+    </ul>
+  </div>
+</div>
+
+<div class="experience-item">
+  <div class="experience-header">
+    <div class="experience-title">فني استنساخ وطباعة</div>
+    <div class="experience-date">مستمر</div>
+  </div>
+  <div class="experience-company">العمل الحر</div>
+  <div class="experience-description">
+    <p>العمل في مجال الاستنساخ والطباعة، ويشمل:</p>
+    <ul style="margin-right: 20px; margin-top: 10px;">
+      <li>استنساخ المستندات الدراسية والإدارية</li>
+      <li>تصميم وطباعة البحوث والمطويات</li>
+      <li>تنسيق الملفات وتقديم خدمات الطباعة بجودة عالية</li>
+    </ul>
+  </div>
+</div>
+
+      
+      <h3 style="color: var(--primary-color); margin: 40px 0 25px;">الشهادات والجوائز</h3>
+      
+      <div class="certificates-list">
+        <div class="certificate-item">
+          <div class="certificate-image">
+            <img src="img/cert1.jpg" alt="كتاب شكر من كلية التربية">
+          </div>
+          <div class="certificate-content">
+            <div class="certificate-title">كتاب شكر وتقدير</div>
+            <div class="certificate-issuer"><i class="fas fa-university"></i> كلية التربية للعلوم الإنسانية - جامعة الموصل</div>
+            <div class="certificate-date">تموز 2022</div>
+            <div class="certificate-description">تقديراً للجهود المتميزة في تصميم وتنفيذ برنامج متكامل لإدارة شؤون الموظفين</div>
+            <button class="download-btn" onclick="downloadImage('cert1.jpg')">
+              <i class="fas fa-download"></i> تحميل الشهادة
+            </button>
+          </div>
+        </div>
+        
+        <div class="certificate-item">
+        <div class="certificate-image">
+          <img src="img/cert2.jpg" alt="كتاب شكر من كلية الهندسة">
+        </div>
+        <div class="certificate-content">
+          <div class="certificate-title">كتاب شكر وتقدير</div>
+          <div class="certificate-issuer"><i class="fas fa-university"></i> كلية هندسة الإلكترونيات - جامعة نينوى</div>
+          <div class="certificate-date">كانون الثاني 2020</div>
+          <div class="certificate-description">تقديراً لتصميم برنامج متكامل لتوثيق البحوث العلمية المسجلة في الكلية</div>
+          <button class="download-btn" onclick="downloadImage('cert2.jpg')">
+            <i class="fas fa-download"></i> تحميل الشهادة
+          </button>
+        </div>
+      </div>
+      
+      <div class="certificate-item">
+        <div class="certificate-image">
+          <img src="img/cert3.jpg" alt="شهادة World Vision">
+        </div>
+        <div class="certificate-content">
+          <div class="certificate-title">شهادة تدريب متقدم</div>
+          <div class="certificate-issuer"><i class="fas fa-certificate"></i> منظمة World Vision</div>
+          <div class="certificate-date">2020</div>
+          <div class="certificate-description">إكمال 280 ساعة تدريبية في مهارات الحاسوب والإنترنت وتصميم المواقع</div>
+          <button class="download-btn" onclick="downloadImage('cert3.jpg')">
+            <i class="fas fa-download"></i> تحميل الشهادة
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="cv.pdf" class="download-pdf" download="سيرة_حسام_الحسيني">
+        <i class="fas fa-file-pdf"></i> تحميل السيرة الذاتية PDF
+      </a>
+    </div>
+  </section>
+
+  <section id="research">
+   <!-- قسم بحوث التخرج -->
+<section id="research" class="section">
+  <div class="container">
+    <div class="section-title">
+      <h2>بحوث التخرج</h2>
+    </div>
+    
+    <div class="certificates-list">
+      <div class="certificate-item">
+        <div class="certificate-image">
+          <img src="img/tasks1.jpg" alt="واجهة نظام إدارة المهام">
+        </div>
+        <div class="certificate-content">
+          <div class="certificate-title">دمج تقنيات المسح الضوئي والبرمجة في انشاء نظام ارشفة رقمي لمستمسكات الموظفين</div>
+          <div class="certificate-description">
+            يهدف المشروع الذي يحمل عنوان ”دمج تقنيات المسح الضوئي والبرمجة لإنشاء نظام أرشفة رقمي متكامل لوثائق الموظفين“، إلى تطوير نظام رقمي شامل لإدارة وأرشفة وثائق الموظفين. ويجمع النظام بين تكنولوجيا المسح الضوئي وبرمجة VB.NET، مما يتيح المسح الضوئي التلقائي والتخزين والتنظيم الفعال. يتم تخزين كل مستند ممسوح ضوئيًا في مجلد خاص مع تسلسل الموظف، مما يوفر سهولة الوصول إلى المستند وإدارة سريعة ومنظمة.
+          </div>
+          <div class="images-row" style="display: flex; gap: 10px; margin-top: 15px;">
+            <button class="download-btn" onclick="downloadImage('tasks2.jpg')">
+              <i class="fas fa-download"></i> تسجيل الدخول
+            </button>
+            <button class="download-btn" onclick="downloadImage('tasks3.jpg')">
+              <i class="fas fa-download"></i>الواجهة الرئيسية
+            </button>
+            <button class="download-btn" onclick="downloadImage('tasks4.jpg')">
+              <i class="fas fa-download"></i>عملية الأرشفة
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="certificate-item">
+        <div class="certificate-image">
+          <img src="img/sales1.jpg" alt="واجهة نظام المبيعات">
+        </div>
+        <div class="certificate-content">
+          <div class="certificate-title">تطبيق اصدار رموز QR لمعلومات الموظفين بأستخدام VB.NET and Access</div>
+          <div class="certificate-description">
+الهدف من الدراسة هو تطوير إطار لإدارة بيانات الموظفين باستخدام تقنية QR Code، باستخدام لغة VB.NET وقاعدة بيانات Access. يحتوي النظام على واجهة لإدخال وإدارة بيانات الموظفين بما في ذلك إضافة موظفين جدد وتعديل بياناتهم وحذفها والبحث في بياناتهم بشكل عام. يسمح البحث للمستخدمين بالبحث باستخدام أجزاء من المصطلح في مواقع مختلفة، مما يحسن دقة النتائج. تمت إضافة زر "عرض QR" لعرض رموز QR مع معلومات الموظف الكاملة. يعمل النظام على تبسيط إدارة الموارد البشرية ويسهل الوصول السريع والفعال إلى المعلومات.          </div>
+          <div class="images-row" style="display: flex; gap: 10px; margin-top: 15px;">
+            <button class="download-btn" onclick="downloadImage('sales2.jpg')">
+              <i class="fas fa-download"></i> تسجيل الدخول
+            </button>
+            <button class="download-btn" onclick="downloadImage('sales3.jpg')">
+              <i class="fas fa-download"></i>الادارة
+            </button>
+            <button class="download-btn" onclick="downloadImage('sales4.jpg')">
+              <i class="fas fa-download"></i>قراءة QR من اي جهاز
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 30px;">
+      <a href="research.pdf" class="load-more-btn" download="بحوث_التخرج_حسام_الحسيني">
+        <i class="fas fa-download"></i> تحميل المزيد من بحوث التخرج
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- قسم المشاريع البرمجية -->
+<section id="projects" class="section">
+  <div class="container">
+    <div class="section-title">
+      <h2>المشاريع البرمجية</h2>
+    </div>
+    
+    <div class="certificates-list">
+      <div class="certificate-item">
+        <div class="certificate-image">
+          <img src="img/qr1.jpg" alt="واجهة تسجيل الحضور">
+        </div>
+        <div class="certificate-content">
+          <div class="certificate-title">نظام تسجيل حضور الطلاب باستخدام QR Code و Django</div>
+          <div class="certificate-description">
+            نظام ذكي لتسجيل حضور الطلاب باستخدام رموز QR الفريدة لكل طالب مع إمكانية إدارة الحضور والغياب.
+          </div>
+          <div class="images-row" style="display: flex; gap: 10px; margin-top: 15px;">
+            <button class="download-btn" onclick="downloadImage('qr1.jpg')">
+              <i class="fas fa-download"></i> تحميل الواجهة
+            </button>
+            <button class="download-btn" onclick="downloadImage('qr2.jpg')">
+              <i class="fas fa-download"></i> تحميل الرموز
+            </button>
+            <button class="download-btn" onclick="downloadImage('qr3.jpg')">
+              <i class="fas fa-download"></i> تحميل التقارير
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="certificate-item">
+        <div class="certificate-image">
+          <img src="img/library1.jpg" alt="واجهة نظام المكتبة">
+        </div>
+        <div class="certificate-content">
+          <div class="certificate-title">نظام إدارة المكتبة</div>
+          <div class="certificate-description">
+            نظام متكامل لإدارة الكتب والإعارة والطلاب في المكتبات الأكاديمية.
+          </div>
+          <div class="images-row" style="display: flex; gap: 10px; margin-top: 15px;">
+            <button class="download-btn" onclick="downloadImage('library1.jpg')">
+              <i class="fas fa-download"></i> تحميل الواجهة
+            </button>
+            <button class="download-btn" onclick="downloadImage('library2.jpg')">
+              <i class="fas fa-download"></i> تحميل الكتب
+            </button>
+            <button class="download-btn" onclick="downloadImage('library3.jpg')">
+              <i class="fas fa-download"></i> تحميل التقارير
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 30px;">
+      <a href="software-projects.pdf" class="load-more-btn" download="المشاريع_البرمجية_حسام_الحسيني">
+        <i class="fas fa-download"></i> تحميل المزيد من المشاريع البرمجية
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- قسم المشاريع الهندسية -->
+<section id="engineering" class="section">
+  <div class="container">
+    <div class="section-title">
+      <h2>المشاريع الهندسية والالكترونية</h2>
+    </div>
+    
+    <div class="certificates-list">
+      <div class="certificate-item">
+        <div class="certificate-image">
+          <img src="img/temp1.jpg" alt="دائرة Arduino">
+        </div>
+        <div class="certificate-content">
+          <div class="certificate-title">قياس درجة الحرارة باستخدام Arduino و DS18B20</div>
+          <div class="certificate-description">
+            نظام لمراقبة درجة الحرارة في الوقت الحقيقي مع إمكانية إرسال التنبيهات عند تجاوز الحدود المحددة.
+          </div>
+          <div class="images-row" style="display: flex; gap: 10px; margin-top: 15px;">
+            <button class="download-btn" onclick="downloadImage('temp1.jpg')">
+              <i class="fas fa-download"></i> تحميل الدائرة
+            </button>
+            <button class="download-btn" onclick="downloadImage('temp2.jpg')">
+              <i class="fas fa-download"></i> تحميل الحساس
+            </button>
+            <button class="download-btn" onclick="downloadImage('temp3.jpg')">
+              <i class="fas fa-download"></i> تحميل القراءات
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="certificate-item">
+        <div class="certificate-image">
+          <img src="img/fire1.jpg" alt="دائرة نظام الإنذار">
+        </div>
+        <div class="certificate-content">
+          <div class="certificate-title">نظام إنذار الحريق الذكي</div>
+          <div class="certificate-description">
+            نظام إنذار يعتمد على مستشعرات الدخان ودرجة الحرارة مع إمكانية الاتصال التلقائي بالدفاع المدني.
+          </div>
+          <div class="images-row" style="display: flex; gap: 10px; margin-top: 15px;">
+            <button class="download-btn" onclick="downloadImage('fire1.jpg')">
+              <i class="fas fa-download"></i> تحميل الدائرة
+            </button>
+            <button class="download-btn" onclick="downloadImage('fire2.jpg')">
+              <i class="fas fa-download"></i> تحميل المستشعر
+            </button>
+            <button class="download-btn" onclick="downloadImage('fire3.jpg')">
+              <i class="fas fa-download"></i> تحميل اللوحة
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 30px;">
+      <a href="engineering-projects.pdf" class="load-more-btn" download="المشاريع_الهندسية_حسام_الحسيني">
+        <i class="fas fa-download"></i> تحميل المزيد من المشاريع الهندسية
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- قسم التواصل -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="section-title">
+      <h2>وسائل الاتصال</h2>
+    </div>
+    
+    <div class="card">
+      <p style="text-align: center; margin-bottom: 2rem;">يمكنك التواصل معي عبر أي من الوسائل التالية، وسأكون سعيداً بالرد عليكم في أقرب وقت ممكن:</p>
+      
+      <div class="social-links">
+        <a href="mailto:hussamfaisal2@gmail.com" target="_blank" title="البريد الإلكتروني"><i class="fas fa-envelope"></i></a>
+        <a href="https://t.me/prog2000h" target="_blank" title="تلغرام"><i class="fab fa-telegram"></i></a>
+        <a href="https://wa.me/07518097029" target="_blank" title="واتساب"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.facebook.com/share/16YzxwPAmm/" target="_blank" title="فيسبوك"><i class="fab fa-facebook"></i></a>
+
+      </div>
+    </div>
+  </div>
+</section>
+  <a href="https://wa.me/07518097029" class="whatsapp-float" target="_blank" title="تواصل عبر واتساب">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <footer>
+    <p>&copy; 2025 جميع الحقوق محفوظة | تم التصميم والتطوير بواسطتي</p>
+  </footer>
+
+  <script>
+    // دالة لتحميل الصور
+    function downloadImage(filename) {
+      const link = document.createElement('a');
+      link.href = 'img/' + filename;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      alert('سيبدأ تحميل الصورة: ' + filename);
+    }
+     // دالة لتحميل ملفات PDF
+    function downloadPdf(filePath, fileName) {
+      const link = document.createElement('a');
+      link.href = 'pdfs/' + filePath;
+      link.download = fileName + '.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      // يمكنك إضافة رسالة تأكيد إذا أردت
+      setTimeout(() => {
+        alert('سيبدأ تحميل ملف PDF: ' + fileName);
+      }, 100);
+    }
+    // دالة لتحميل ملفات PDF
+function downloadPDF(file) {
+  // يمكنك تغيير هذا الجزء ليتناسب مع طريقة تخزين الملفات لديك
+  const pdfFiles = {
+    'بحوث_التخرج_حسام_الحسيني': 'research-projects.pdf',
+    'المشاريع_البرمجية_حسام_الحسيني': 'software-projects.pdf',
+    'المشاريع_الهندسية_حسام_الحسيني': 'engineering-projects.pdf'
+  };
+  
+  const link = document.createElement('a');
+  link.href = 'pdf/' + pdfFiles[file];
+  link.download = file + '.pdf';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  
+  // إشعار للمستخدم
+  Toastify({
+    text: "جاري تحميل الملف: " + file,
+    duration: 3000,
+    gravity: "bottom",
+    position: "left",
+    backgroundColor: "var(--dark-brown)",
+    stopOnFocus: true
+  }).showToast();
+}
+    // تأثير سلس للتمرير إلى الأقسام
+    document.querySelectorAll('nav a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        window.scrollTo({
+          top: targetElement.offsetTop - 70,
+          behavior: 'smooth'
+        });
+        
+        // إغلاق القائمة المتنقلة إذا كانت مفتوحة
+        document.querySelector('.nav-links').classList.remove('active');
+      });
+    });
+    
+    // تأثيرات للشريط المهارات عند التحميل
+    document.addEventListener('DOMContentLoaded', function() {
+      const skillBars = document.querySelectorAll('.skill-level');
+      skillBars.forEach(bar => {
+        const width = bar.style.width;
+        bar.style.width = '0';
+        setTimeout(() => {
+          bar.style.width = width;
+        }, 500);
+      });
+    });
+    
+    // تفعيل/تعطيل القائمة المتنقلة
+    document.querySelector('.nav-toggle').addEventListener('click', function() {
+      document.querySelector('.nav-links').classList.toggle('active');
+    });
+    
+    // إغلاق القائمة عند النقر خارجها
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('nav') && !e.target.classList.contains('nav-toggle')) {
+        document.querySelector('.nav-links').classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
